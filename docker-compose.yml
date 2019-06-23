@@ -1,0 +1,38 @@
+version: "2.2"
+
+services:
+  # postgres:
+  #   image: postgres:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./data/db:/docker-entrypoint-initdb.d/
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     app_net:
+  #       ipv4_address: 172.16.0.151
+
+  #   hasura:
+  #   image: hasura/graphql-engine:v1.0.0-beta2
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8001:8080"
+  #   environment:
+  #     - HASURA_GRAPHQL_ENABLE_CONSOLE=true
+  #     - HASURA_GRAPHQL_DATABASE_URL=postgresql://172.16.0.151:5432/kes?user=kes&sslmode=disable
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     app_net:
+  #       ipv4_address: 172.16.0.160
+  juno:
+    image: juno-test-2:latest
+    environment:
+      - RPC_NODE=<rpc-ip/host>:<rpc-port>
+      - CLIENT_NODE="http://<client-ip/host>:<client-port>"
+      - DBPORT=5432
+      - DBNAME=juno
+      - DBUSER=juno
+      - DBPASSWORD=Gotcha
+    # depends_on:
+    #   - postgres
